@@ -41,7 +41,7 @@ namespace Archit
       Version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
       //Text = "Archit V" + Version;
 
-      lbVersion.Text = "--Archit - (C)Pierre Delore - Version " + Version + "--";
+      lbVersion.Text = "-- \u00A9 Pierre Delore - Version " + Version + " --";
 
       //..
       LoadDB();
@@ -106,8 +106,15 @@ namespace Archit
             return false;
           }
         }
+        //..
+        Cursor.Current = Cursors.WaitCursor;
+        Application.DoEvents();
+        //..
         ZipFile.CreateFromDirectory(lbSrcVal.Text, s);
-
+        //..
+        Cursor.Current = Cursors.Default;
+        Application.DoEvents();
+        //..
         return true;
       }
       else

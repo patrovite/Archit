@@ -119,7 +119,7 @@ namespace Archit
       }
       else
       {
-        MessageBox.Show("Impossible de générer l'archive.\nContrôlez le répertoire source et destination.", "Archit", MessageBoxButtons.OK);
+        MessageBox.Show("Impossible de générer l'archive.\nContrôlez le chemin des répertoires source et destination.", "Archit", MessageBoxButtons.OK);
         return false;
       }
     }

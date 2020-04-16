@@ -125,7 +125,12 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Archit.ico" />
+    <Content Include="Archit.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="gpl-3.0.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="images\ajouter.png" />
     <None Include="images\compress32.png" />
     <None Include="images\compress_exit.png" />

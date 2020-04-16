@@ -189,7 +189,7 @@
       this.lbExempleTitre.Name = "lbExempleTitre";
       this.lbExempleTitre.Size = new System.Drawing.Size(134, 20);
       this.lbExempleTitre.TabIndex = 23;
-      this.lbExempleTitre.Text = "Exemple nom fichier";
+      this.lbExempleTitre.Text = "Exemple de nom fichier";
       this.lbExempleTitre.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
       // 
       // lbExemple

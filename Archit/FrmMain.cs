@@ -216,6 +216,7 @@ namespace Archit
         Projet prj = lstprj.Projets[p];
         lstprj.Projets.Remove(prj);
         lstprj.Projets.Insert(p + 1, prj);
+        SaveDB();
 
         RefreshListbox();
         //p = listBoxProjets.SelectedIndex;
@@ -234,6 +235,7 @@ namespace Archit
         Projet prj = lstprj.Projets[p];
         lstprj.Projets.Remove(prj);
         lstprj.Projets.Insert(p - 1, prj);
+        SaveDB();
 
         RefreshListbox();
         //p = listBoxProjets.SelectedIndex;

@@ -12,7 +12,7 @@
 !define DESCRIPTION "Gestion de vos sauvegardes au format ZIP"
 # These three must be integers
 !define VERSIONMAJOR 1
-!define VERSIONMINOR 0
+!define VERSIONMINOR 1
 !define VERSIONBUILD 0
 # These will be displayed by the "Click here for support information" link in "Add/Remove Programs"
 # It is possible to use "mailto:" links in here to open the email client

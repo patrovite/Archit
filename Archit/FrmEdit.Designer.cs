@@ -61,6 +61,7 @@
       // 
       // lbSrcVal
       // 
+      this.lbSrcVal.AutoEllipsis = true;
       this.lbSrcVal.BackColor = System.Drawing.Color.Linen;
       this.lbSrcVal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
       this.lbSrcVal.Location = new System.Drawing.Point(12, 75);
@@ -84,6 +85,7 @@
       // 
       // lbDestVal
       // 
+      this.lbDestVal.AutoEllipsis = true;
       this.lbDestVal.BackColor = System.Drawing.Color.Linen;
       this.lbDestVal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
       this.lbDestVal.Location = new System.Drawing.Point(12, 118);
@@ -194,6 +196,7 @@
       // 
       // lbExemple
       // 
+      this.lbExemple.AutoEllipsis = true;
       this.lbExemple.BackColor = System.Drawing.Color.Linen;
       this.lbExemple.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
       this.lbExemple.Location = new System.Drawing.Point(12, 350);

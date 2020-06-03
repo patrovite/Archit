@@ -144,6 +144,7 @@
       // 
       this.lbSrcVal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+      this.lbSrcVal.AutoEllipsis = true;
       this.lbSrcVal.BackColor = System.Drawing.Color.Linen;
       this.lbSrcVal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
       this.lbSrcVal.Location = new System.Drawing.Point(218, 37);
@@ -156,6 +157,7 @@
       // 
       this.lbDstVal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+      this.lbDstVal.AutoEllipsis = true;
       this.lbDstVal.BackColor = System.Drawing.Color.Linen;
       this.lbDstVal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
       this.lbDstVal.Location = new System.Drawing.Point(218, 80);
@@ -212,6 +214,7 @@
       // 
       this.lbResultVal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+      this.lbResultVal.AutoEllipsis = true;
       this.lbResultVal.BackColor = System.Drawing.Color.Linen;
       this.lbResultVal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
       this.lbResultVal.Location = new System.Drawing.Point(218, 166);

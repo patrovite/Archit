@@ -56,5 +56,30 @@ namespace Archit
       return res;
     }
 
+
+    public static string ReadKey(System.Xml.XmlNode keynode, string key, string defaultvalue)
+    {
+      if (keynode.Name.ToUpper() == key)
+      {
+        if (keynode.ChildNodes.Count > 0)
+        {
+          if (keynode.FirstChild.Value != null)
+            return keynode.FirstChild.Value;
+        }
+      }
+      return defaultvalue;
+    }
+
+    public static string GetAppDataDir()
+    {
+      return Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+    }
+
+    public static string GetAppDir()
+    {
+      return System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location);
+    }
+
+
   } //class
 } //namespace

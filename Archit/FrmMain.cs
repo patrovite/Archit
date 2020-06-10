@@ -5,18 +5,19 @@ using System.Text.Json;
 using System.IO;
 using System.IO.Compression;
 using System.Reflection;
-using System.Diagnostics;
-using System.Drawing;
+using System.Xml;
 
 namespace Archit
 {
   public partial class FrmMain : Form
   {
     public StoreProjets lstprj = new StoreProjets();
-    public string AppDir;
+    public string AppDir, AppDataDir;
     public string Version;
     //public string dirname = "c:/tmp/";
-    public String filename = "archit_db.json"; 
+    public String filename = "archit_db.json";
+    public Config settings;
+    public string TranslateFilename;
 
     public FrmMain()
     {
@@ -27,8 +28,14 @@ namespace Archit
     private void FrmMain_Load(object sender, EventArgs e)
     {
       //-- Récupération du répertoire de l'application
-      AppDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/Archit/";
+      //AppDir = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location);
+      AppDir = Utils.GetAppDir();
       AppDir = AppDir.Replace("\\", "/");
+
+      AppDataDir = Utils.GetAppDataDir() + "/Archit";
+      AppDataDir = AppDataDir.Replace("\\", "/");
+
+
 
       //-- Le répertoire User existe? Non on le crée
       if (!System.IO.Directory.Exists(AppDir))
@@ -43,6 +50,14 @@ namespace Archit
 
       lbVersion.Text = "-- \u00A9 Pierre Delore - Version " + Version + " --";
 
+      //-- Chargement config
+      settings = new Config(AppDataDir, "config.cfg");
+      settings.Load();
+
+      //-- Chargement traduction
+      TranslateFilename = AppDir + "/lng/texts." + settings.langue.ToString() + ".xml";
+      Translate(TranslateFilename);
+
       //..
       LoadDB();
       RefreshListbox();
@@ -55,9 +70,9 @@ namespace Archit
     /// </summary>
     public void LoadDB()
     {
-      if (File.Exists(AppDir + filename))
+      if (File.Exists(AppDataDir + "/" + filename))
       {
-        string jsonString = File.ReadAllText(AppDir + filename);
+        string jsonString = File.ReadAllText(AppDataDir + "/" + filename);
         lstprj = JsonSerializer.Deserialize<StoreProjets>(jsonString);
       }
     }
@@ -159,7 +174,7 @@ namespace Archit
 
     private void btPlus_Click(object sender, EventArgs e)
     {
-      FrmEdit frm = new FrmEdit();
+      FrmEdit frm = new FrmEdit(settings, AppDir);
       frm.prj = new Projet();
       if (frm.ShowDialog() == DialogResult.OK)
       {
@@ -177,7 +192,7 @@ namespace Archit
       int p = listBoxProjets.SelectedIndex;
       if (p == -1) return;
 
-      FrmEdit frm = new FrmEdit();
+      FrmEdit frm = new FrmEdit(settings, AppDir);
       frm.prj = lstprj.Projets[p];
       if (frm.ShowDialog() == DialogResult.OK)
       {
@@ -273,6 +288,55 @@ namespace Archit
         RefreshFields(false);
       }
     }
+
+    private void picSettings_Click(object sender, EventArgs e)
+    {
+        FrmSettings frm = new FrmSettings(settings, AppDir);
+        frm.setLanguage(settings.langue);
+        if (frm.ShowDialog() == DialogResult.OK)
+        {
+          settings.langue = frm.getLanguage();
+          settings.Save();
+          Translate(AppDir + "/lng/texts." + settings.langue.ToString() + ".xml");
+      }
+    }
+
+
+    private void Translate(string name)
+    {
+      XmlDocument XmlDoc = new XmlDocument();
+
+      //-- Open the XML file --
+      if (System.IO.File.Exists(name) == false) return;
+
+      XmlDoc.Load(name);
+
+      //-- Recherche de la section node --
+      foreach (XmlNode section in XmlDoc.ChildNodes)
+      {
+        //-- SECTION
+        if (section.Name.ToUpper() == "MAIN")
+        {
+
+          //-- CLES
+          foreach (XmlNode key in section.ChildNodes)
+          {
+            lbSrc.Text = Utils.ReadKey(key, "LBSRC", lbSrc.Text);
+            lbDst.Text = Utils.ReadKey(key, "LBDST", lbDst.Text);
+            lbComment.Text = Utils.ReadKey(key, "LBCOMMENT", lbComment.Text);
+            lbResult.Text = Utils.ReadKey(key, "LBRESULT", lbResult.Text);
+            grpbListeProjets.Text = Utils.ReadKey(key, "GRPLISTEPROJETS", grpbListeProjets.Text);
+            btArchiver.Text = Utils.ReadKey(key, "BTARCHIVER", btArchiver.Text);
+            btArchiverFermer.Text = Utils.ReadKey(key, "BTARCHIVERFERMER", btArchiverFermer.Text);
+          } //Boucle clés
+        } //Section choisi
+
+      } // Boucle section
+    }  //Translate
+
+
+
+
 
   } //Class
 } //Namespace

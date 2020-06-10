@@ -1,0 +1,33 @@
+<!--  Archit - French translation  -->
+
+<MAIN>
+	<LBSRC>Répertoire source</LBSRC>
+	<LBDST>Répertoire destination</LBDST>
+	<LBCOMMENT>Commentaire</LBCOMMENT>
+	<LBRESULT>Résultat</LBRESULT>
+	<GRPLISTEPROJETS>Projets</GRPLISTEPROJETS>
+	<BTARCHIVER>Archiver</BTARCHIVER>
+	<BTARCHIVERFERMER>Archiver et Fermer</BTARCHIVERFERMER>
+
+	<GROUPBOXLANGUAGE>Langue</GROUPBOXLANGUAGE>
+	<BTVALIDE>Valider</BTVALIDE>
+	<BTCANCEL>Annuler</BTCANCEL>
+
+	<LBNOMPROJET>Nom projet</LBNOMPROJET>
+	<LBSRC>Répertoire source</LBSRC>
+	<LBDEST>Répertoire destination</LBDEST>
+	<LBFORMAT>Format nom fichier</LBFORMAT>
+	<LBHELPTITRE>Aide format</LBHELPTITRE>
+	<LBHELP>%Y : Année 4 chiffres (2008)
+%y : Année 2 chiffres (08)
+%M : Mois (00 à 12)
+%J : Jour (01 à 31)
+%h : Heure (00 à 23)
+%m : Minute (00 à 59)
+%s : Seconde (00 à 59)
+%C : Chaine saisie dans le champ commentaire
+Les autres caractères sont directement ajoutés dans le nom de fichier.</LBHELP>
+	<LBEXEMPLETITRE>Exemple de nom fichier</LBEXEMPLETITRE>
+
+</MAIN>
+

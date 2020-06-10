@@ -7,20 +7,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace Archit
 {
   public partial class FrmEdit : Form
   {
     public Projet prj;
+    Config settings;
+    String appDir;
 
-    public FrmEdit()
+    public FrmEdit(Config settings, String appDir)
     {
+      this.settings = settings;
+      this.appDir = appDir;
       InitializeComponent();
     }
 
     private void FrmEdit_Shown(object sender, EventArgs e)
     {
+      //-- Load translation
+      Translate(appDir + "/lng/texts." + settings.langue.ToString() + ".xml");
+
       Refresh();
     }
 
@@ -87,5 +95,42 @@ namespace Archit
         lbDestVal.Text = folderBrowserDialog.SelectedPath.Trim();
       }
     }
+
+
+    private void Translate(string name)
+    {
+      XmlDocument XmlDoc = new XmlDocument();
+
+      //-- Open the XML file --
+      if (System.IO.File.Exists(name) == false) return;
+
+      XmlDoc.Load(name);
+
+      //-- Recherche de la section node --
+      foreach (XmlNode section in XmlDoc.ChildNodes)
+      {
+        //-- SECTION
+        if (section.Name.ToUpper() == "MAIN")
+        {
+
+          //-- CLES
+          foreach (XmlNode key in section.ChildNodes)
+          {
+            lbNomProjet.Text = Utils.ReadKey(key, "LBNOMPROJET", lbNomProjet.Text);
+            lbSrc.Text = Utils.ReadKey(key, "LBSRC", lbSrc.Text);
+            lbDest.Text = Utils.ReadKey(key, "LBDEST", lbDest.Text);
+            lbFormat.Text = Utils.ReadKey(key, "LBFORMAT", lbFormat.Text);
+            lbHelpTitre.Text = Utils.ReadKey(key, "LBHELPTITRE", lbHelpTitre.Text);
+            lbHelp.Text = Utils.ReadKey(key, "LBHELP", lbHelp.Text);
+            lbExempleTitre .Text = Utils.ReadKey(key, "LBEXEMPLETITRE", lbExempleTitre.Text);
+
+            btValide.Text = Utils.ReadKey(key, "BTVALIDE", btValide.Text);
+            btCancel.Text = Utils.ReadKey(key, "BTCANCEL", btCancel.Text);
+          } //Boucle clés
+        } //Section choisi
+
+      } // Boucle section
+    }  //Translate
+
   } //class
 } //Namespace
